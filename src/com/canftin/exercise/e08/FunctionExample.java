@@ -8,7 +8,15 @@ public class FunctionExample {
     public static <A, B, C> Function<B, C> partialA(A a, Function<A, Function<B, C>> f) {
         return f.apply(a);
     }
+    public Function<Integer, Integer> factorial;
+    {
+        factorial = n -> n <= 1 ? n : n * factorial.apply(n - 1);
+    }
+    public final Function<Integer, Integer> fac =
+            n -> n <= 1 ? n : n * this.fac.apply(n - 1);
+    public static void main(String[] args) {
 
+    }
     @Test
     public void testPartialA() {
         Function<Integer, Function<Double, Double>> f = a -> b -> a * (1 + b / 100);
